@@ -1,0 +1,40 @@
+/** @format */
+
+body {
+	font-family: sans-serif;
+	margin: 0;
+}
+
+nav {
+	background: darkred;
+	padding: 1rem;
+}
+
+.btn_link {
+	background-color: greenyellow;
+	color: black;
+	margin-right: 16px;
+}
+
+.CardGame {
+	background-color: lightcyan;
+}
+
+.a_link {
+	text-decoration: none !important;
+}
+
+.CardGame:hover {
+	background-color: slategray;
+}
+
+nav a {
+	color: white;
+	margin-right: 10px;
+}
+
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 1rem;
+}

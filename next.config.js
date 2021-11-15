@@ -1,7 +1,7 @@
-/** @format */
-// next.config.js
 module.exports = {
-	images: {
-		domains: ["localhost"],
-	},
-};
+  reactStrictMode: true,
+  images: {
+    domains: ['https://noroff.herokuapp.com'],
+  },
+}
+
