@@ -8,7 +8,6 @@ import { ConstructionOutlined } from "@mui/icons-material";
 import assetArr from "./api/assetArr";
 import Link from "next/link";
 import CardDefault from "../comps/CardDefault";
-import { NavbarLayout } from "../comps/Layout/NavLayout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { withStyles } from '@mui/styles';
 import AdminPage from "./admin";

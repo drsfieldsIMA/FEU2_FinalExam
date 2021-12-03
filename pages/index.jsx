@@ -14,7 +14,6 @@ import Link from 'next/link'
 import { createMemoryHistory } from 'history';
 import Heading from "../comps/common/Heading";
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
-import {NavbarLayout}  from "../comps/Layout/NavLayout";
 import Footer from '../comps/Layout/Footer';
 import  { AuthProvider } from "../comps/context/AuthContext";
 import Layout from "../comps/Layout/Layout";
