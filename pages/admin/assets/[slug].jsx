@@ -34,9 +34,9 @@ export default function assetPost({ asset }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(`http://localhost:1337/assets`);
-	const assets = await res.json(); 
-//	const assets=assetArr;
+//  const res = await fetch(`http://localhost:1337/assets`);
+//	const assets = await res.json(); 
+	const assets=assetArr;
 	const paths = assets.map((post) =>
 		({
 			params: { slug: post.Slug },

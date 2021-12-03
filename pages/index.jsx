@@ -74,9 +74,9 @@ const history = createMemoryHistory();
 
 
 export  async function getStaticProps() {
-		const res = await fetch(`http://localhost:1337/assets`);
-		const data = await res.json();
-	//const assets=assetArr
+	//	const res = await fetch(`http://localhost:1337/assets`);
+//		const data = await res.json();
+	const data=assetArr
 		return {
 			props: { assets: data },
 		};

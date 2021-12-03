@@ -2,11 +2,12 @@ import React from 'react'
 import Link from "next/link"
 import Heading from '../../../comps/common/Heading'
 import PropTypes from "prop-types";
+import assetArr from '../../api/assetArr';
 
 export  async function getStaticProps() {
-  const res  = await fetch(`http://localhost:1337/assets`);
-  const data = await res.json();
-//const assets=assetArr
+  //const res  = await fetch(`http://localhost:1337/assets`);
+  //const data = await res.json();
+   const data=assetArr
 console.log("assets line 26",data)
   return {
     props: { data },
@@ -31,7 +32,6 @@ function AdminAssetsPage(data) {
 
 
 }
-
 
 AdminAssetsPage.propTypes = {
   props:PropTypes.node,
