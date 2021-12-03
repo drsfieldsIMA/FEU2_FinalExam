@@ -14,7 +14,7 @@ import { UserAdd as UserAddIcon } from '../../public/icons/user-add';
 import { Users as UsersIcon } from '../../public/icons/users';
 import { XCircle as XCircleIcon } from '../../public/icons/x-circle';
 import {logoPic} from '../../public/Aida_logo.svg';
-import { NavItem } from './navItem';
+import { NavItem } from './NavItem';
 
 const items = [
   {
