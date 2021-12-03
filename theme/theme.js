@@ -20,9 +20,17 @@ export const theme = createTheme({
 			styleOverrides: {
 				root: {
 					textTransform: "none",
+					fontFamily:"adelle",
 				},
 				sizeSmall: {
 					padding: "6px 16px",
+				},
+				h3:{
+					fontFamily:"adelle",
+						fontSize:"1.5rem",
+					},
+				body2:{
+        fontFamily:"Fira Codensed Sans",
 				},
 				sizeMedium: {
 					padding: "8px 20px",

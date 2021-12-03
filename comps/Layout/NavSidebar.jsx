@@ -4,16 +4,16 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { ChartBar as ChartBarIcon } from '../public/icons/chart-bar';
-import { Cog as CogIcon } from '../public/icons/cog';
-import { Lock as LockIcon } from '../public/icons/lock';
-import { Selector as SelectorIcon } from '../public/icons/selector';
-import { ShoppingBag as ShoppingBagIcon } from '../public/icons/shopping-bag';
-import { User as UserIcon } from '../public/icons/user';
-import { UserAdd as UserAddIcon } from '../public/icons/user-add';
-import { Users as UsersIcon } from '../public/icons/users';
-import { XCircle as XCircleIcon } from '../public/icons/x-circle';
-import {logoPic} from '../public/Aida_logo.svg';
+import { ChartBar as ChartBarIcon } from '../../public/icons/chart-bar';
+import { Cog as CogIcon } from '../../public/icons/cog';
+import { Lock as LockIcon } from '../../public/icons/lock';
+import { Selector as SelectorIcon } from '../../public/icons/selector';
+import { ShoppingBag as ShoppingBagIcon } from '../../public/icons/shopping-bag';
+import { User as UserIcon } from '../../public/icons/user';
+import { UserAdd as UserAddIcon } from '../../public/icons/user-add';
+import { Users as UsersIcon } from '../../public/icons/users';
+import { XCircle as XCircleIcon } from '../../public/icons/x-circle';
+import {logoPic} from '../../public/Aida_logo.svg';
 import { NavItem } from './navItem';
 
 const items = [

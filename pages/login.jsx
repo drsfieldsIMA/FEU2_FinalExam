@@ -1,128 +1,183 @@
-import React from 'react'
-import { useFormik } from 'formik'
-import { Box, Button, Container, Grid, Link, TextField, Typography,Heading,Input } from '@mui/material'
+
+  /** @format */
+
+import { useState, useContext } from "react";
+import { useForm } from "react-hook-form";
+import Head from 'next/head';
+import * as yup from "yup";
+import NextLink from 'next/link';
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import { API_URL } from '../utils/url'
-import {useRouter} from 'next/router'
-import nookies from 'nookies'
+import router from "next/router";
+import nookies from 'nookies';
+import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AuthContext from "../comps/context/AuthContext";
+import Dashboard from "./dashboard";
+
+const url = API_URL+ "/auth/local";
+
+const schema = yup.object().shape({
+	username: yup.string().required("Please enter your email"),
+	password: yup.string().required("Please enter your password"),
+});
+
+export default function LoginForm() {
+	const [submitting, setSubmitting] = useState(false);
+	const [loginError, setLoginError] = useState(null);
+
+	//const history = useHistory();
+
+	const { register, handleSubmit, errors } = useForm({
+		resolver: yupResolver(schema),
+	});
+
+	const [isValid, setIsValid] = useState(false);
+	const [focusMessage, setMessage] = useState("");
+	const [loginisValid, setloginisValid] = useState(false);
+	const [focusLoginMessage, setFocusMessage] = useState("");
+	const [auth, setAuth] = useContext(AuthContext);
+
+	const nameRegex = /\S/;
+
+	const validateName = (event) => {
+		const name = event.target.value;
+		if (nameRegex.test(name) && name.length > 4) {
+			setIsValid(true);
+			setMessage("Your Name looks good");
+		} else {
+			setIsValid(false);
+			setMessage("Please enter a name with more than 3 characters!");
+		}
+	};
+
+	const [isValidPassword, setIsValidPassword] = useState(false);
+	const [focusMessagePassword, setFocusMessagePassword] = useState("");
+
+	const passwordRegex = /\S/;
+
+	const validatePassword = (event) => {
+		const pass = event.target.value;
+		if (passwordRegex.test(pass) && pass.length > 2) {
+			setIsValidPassword(true);
+			setFocusMessagePassword("Your password looks good");
+		} else {
+			setIsValidPassword(false);
+			setFocusMessagePassword("Please enter a Password with more than 2 characters!");
+		}
+	};
 
 
-const initialValues = {
-  email:'',
-  password:''
-}
-
-const validate=values => {
-  let errors = {}
-
-if (!values.password) {
- errors.password = 'Required'
-}
-
-if (!values.email) {
-
-
-  errors.email = 'This field is required'
-} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
- errors.email = 'Invalid email format'
-}
-
-return errors
-}
-
-const onSubmit = values => {
-console.log("L35",values.email)
-fetcher()
-async function fetcher(){
-  try{
+	async function onSubmit(data) {
+		setSubmitting(true);
+		setLoginError(null);
+		setIsValid(false);
     const loginInfo = {
-      identifier:values.email,
-      password: values.password
+      identifier:data.username,
+      password: data.password
   }
+		console.log("data 1", loginInfo );
+   
+		try {
+			console.log("url", url);
+			console.log("data 2", data);
+			const response = await axios.post(url, loginInfo);
+			console.log("response", response.data);
+      setIsValid(true);
+			setloginisValid(true);
+      nookies.set(null, 'jwt', response.data.jwt ,{
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
+			setFocusMessage("You will now log in in 2 seconds");
+			setMessage("");
+			setAuth(response.data)
+			setTimeout(() => {
+				router.push("/dashboard");
+			}, 2000);
 
-  const login = await fetch(API_URL+"/auth/local", {
-    method: "POST",
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(loginInfo)
-})
-const loginResponse = await login.json();
-console.log("Response",login.status);
+			//			history.push("/dashboard");
+		} catch (error) {
+			console.log("error", error);
+			setLoginError(error.toString());
+		} finally {
+			setSubmitting(false);
+		}
+	}
 
-// Parse
-const cookies = nookies.get(ctx)
-
-// Set
-nookies.set(ctx, 'fromGetInitialProps', 'value', {
-  maxAge: 30 * 24 * 60 * 60,
-  path: '/',
-})
-
-if (login.status==200){
-  Router.push('/login')
-}
-}
-catch{
-  console.log("error")
-}
-finally{
-  window.location.replace("http://localhost:3001/admin");
-}
-}
-
-
-}
-
-function FormLogin() {
-
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validate,
-  })
-  
-  return (
-    <Box
+	return (
+		<>
+		<Head>
+        <title>Login | AIDA</title>
+      </Head>
+      <Box
         component="main"
         sx={{
           alignItems: 'center',
           display: 'flex',
           flexGrow: 1,
-          minHeight: '100%'
+          minHeight: '100%',
         }}
+        className="height-75"
       >
-    <Container maxWidth="sm" sx={{backgroundColor:'#f0f6fa'}}>
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-      <div className='form-control'>
-              <label htmlFor='email'>email</label>
-              <input
-               type='text' 
-               id='email'
-                name='email' 
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                 value ={formik.values.email}/>
-        </div>
-        {formik.touched.email && formik.errors.email ? (
-          <div className='error'>{formik.errors.email}</div>
-        ) : null}
+        <Container    sx={{
+          backgroundColor:'white',
+        }} maxWidth="sm">
+          <NextLink
+            href="/"
+            passHref
+          >
+            <Button
+              component="a"
+              startIcon={<ArrowBackIcon fontSize="small" />}
+            >
+              Dashboard
+            </Button>
+          </NextLink>
+    <div></div>
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<div className={`message ${loginisValid ? "success" : "error"}`}>
+				{focusLoginMessage}
+			</div>
+			
+			<fieldset disabled={submitting}>
+				<div>
+					<input
+						name="username"
+						placeholder="username"
+						className="formInput"
+						onChange={validateName}
+						{...register('username')}
+					/>
+					
 
-            <div className='form-control'>
-              <label htmlFor='password'>password</label>
-              <input type='password' id='password' name='password' onChange={formik.handleChange} onBlur={formik.handleBlur} value ={formik.values.password} />
-            </div>
-            {formik.touched.password && formik.errors.password ? (
-          <div className='error'>{formik.errors.password}</div>
-        ) : null}
+					<div className={`message ${isValid ? "success" : "error"}`}>
+						{focusMessage}
+					</div>
+				</div>
 
-            <Button className="btn_primary"  size="small" type='submit' >Submit</Button>
-      </form>
-    </div>
-    </Container>
-    </Box>
-  )
+				<div>
+					<input
+						name="password"
+						placeholder="password"
+						{...register('password')}
+						onChange={validatePassword}
+						type="password"
+					/>
+					<div className={`message ${isValidPassword ? "success" : "error"}`}>
+						{focusMessagePassword}
+					</div>
+				</div>
+				<Button type="submit">{submitting ? "Logging in..." : "Login"}</Button>
+			</fieldset>
+		</form>
+		</Container>
+		</Box>
+		</>
+	);
 }
 
-export default FormLogin;
+LoginForm.defaultProps = {
+	register: () => {},
+};

@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import PropTypes from 'prop-types';
-import  theme  from '../theme/theme';
+import  theme  from '../../theme/theme';
 
 export const NavMob = (props) =>  {
 

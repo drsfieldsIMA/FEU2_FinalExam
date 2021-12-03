@@ -145,10 +145,10 @@ margin: 0 auto!important;
 	}
 
 	.container-2 {
-		transform: skewY(-6.2deg);
+	//	transform: skewY(-6.2deg);
 	}
 	.row {
-		--bs-gutter-x: 8px !important;
+		--bs-gutter-x: 0 !important;
 		--bs-gutter-y: 0;
 		display: flex;
 		flex-wrap: wrap;

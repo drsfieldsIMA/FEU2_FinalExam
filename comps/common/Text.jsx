@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Text ({ color="white" ,size = "14", fontFamily="Fira Sans Condensed", content }) {
+function Text ({ color,size = "14", fontFamily="Fira Sans Condensed", content }) {
 	return( 
   <p  style={{ color,size, fontFamily}} >{content}</p>
   );

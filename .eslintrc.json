@@ -1,25 +1,19 @@
 {
     "env": {
         "browser": true,
-        "node": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+      "eslint:recommended",
+      "next/core-web-vitals"
     ],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
         "ecmaVersion": 12,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
-      "react/react-in-jsx": "off",
-      "react/jsx-filename-extension":[1,{"extensions" :[".js", ".jsx"]}]
-    }
+        "no-unused-vars": "off",
+        "rules-of-hooks":"off"
+      }
 }

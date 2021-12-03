@@ -1,14 +1,18 @@
 /** @format */
 import React from "react";
-import { Link} from "react-router-dom";
+import Link from "next/link"
 import Image from "next/image";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { ChartBar as ChartBarIcon } from '../../public/icons/chart-bar';
+import { Cog as CogIcon } from '../../public/icons/cog';
+import { Lock as LockIcon } from '../../public/icons/lock';
+import { Box, Button, Divider, Drawer, Typography, useMediaQuery } from '@mui/material';
+import { createMemoryHistory } from 'history';
 
 function Nav() {
-
 	return (
 			<nav className="navbar navbar-expand-lg navbar-light">
-				<Link className="navbar-brand" to="/">
+				<Link className="navbar-brand" href="/">
 					<Image className="nav_img"
 						width={72}
 						height={72} 
@@ -16,25 +20,36 @@ function Nav() {
 									alt="Aida logo"
 						></Image>
 					</Link>
-                    <Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" href="/">
 											AIDA
-                      <span className="typewriter"> 人工知能欠陥の獲得 </span>
+                       人工知能欠陥の獲得
                     </Link>
                     
                    
                     <div className="navbar-collapse justify-content-end" id="navbarNav">
                         <ul className="navbar-nav ">
                             <li className="nav-item">
-														<Link to="/" exact>Home</Link>
+														<Link href="/">
+															<a>
+															Home
+															</a>
+															</Link>
                             </li>
                             <li className="nav-item">
-															<Link to="/products">Products</Link>
+															<Link href="/products"><a>
+															Products
+															</a></Link>
                              </li>
                             <li className="nav-item">
-														<Link to="/about">About</Link>
+														<Link href="/about">
+															<a>About</a></Link>
                             </li>
 														<li className="nav-item">
-														<Link to="/login">Log in</Link>
+														<Link href="/login">
+												<a>			
+														Log in
+                       </a>
+														</Link>
                             </li>
                         </ul>
                     </div>

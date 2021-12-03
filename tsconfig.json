@@ -18,12 +18,7 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "pages/[slug].jsx"],
+    "exclude": ["node_modules", ".next", ".vercel", "out"]
+  
 }

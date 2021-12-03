@@ -2,46 +2,86 @@
 
 // import Link from "next/link";
 import React  from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./homePage";
-import Heading from "../comps/Heading";
-import Footer from "../comps/Footer";
-// import SplashSection from "./splash";
-import CardDefault from "../comps/CardDefault";
-import Carousel from "react-elastic-carousel";
+import {Router, Switch, Route } from "react-router-dom";
+import HomePage from "../comps/Home/homePage";
 import PropTypes from "prop-types";
 import { API_URL } from "../utils/url";
-import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
-import {NavbarLayout}  from "../comps/NavLayout";
-import Nav from "../comps/Nav";
+import Nav from "../comps/Layout/Nav";
 import FormLogin from "./login";
-import  { AuthProvider } from "./auth/AuthContext";
-import Dashboard from "./admin";
-import HomeDeck from "./HomeCards";
-import ProductStore from "./products";
+import Dashboard from "./dashboard";
 import assetArr from "./api/assetArr";
+import Link from 'next/link'
+import { createMemoryHistory } from 'history';
+import Heading from "../comps/common/Heading";
+import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material';
+import {NavbarLayout}  from "../comps/Layout/NavLayout";
+import Footer from '../comps/Layout/Footer';
+import  { AuthProvider } from "../comps/context/AuthContext";
+import Layout from "../comps/Layout/Layout";
+import HomeDeck from "../comps/Home/HomeCards";
+import ProductStore from "./products";
+import AboutSection from "./about";
+import productPost from "./[slug]";
+import CarouselApp from "../comps/Home/CarouselApp"
+import AdminPage from "./admin";
+import AdminAssetsPage from "./admin/assets";
 
-const Index = ({...props }) => {
-const assets=assetArr;
-//console.log(assets);
+const Index = ({assets,props}) => {
+const history = createMemoryHistory();
 	return (
-		<>
-		<HomePage/>
-		<HomeDeck/>
-		</>
+		<div>
+		<Router  history={history}>
+				<Switch>
+					<Route path="/"  exact >
+					<HomePage/>
+					<HomeDeck/>
+					<section className="carousel-wrapper">
+					<CarouselApp props={{assets:assets}}></CarouselApp>
+					</section>
+					</Route>
+					<Route path="/products">
+					<Heading content="Products" />
+					<ProductStore props={assets}/>
+					</Route>
+					<Route path="/login">
+					<FormLogin/>
+					</Route>
+					<Route path="/about">
+					<Heading content="About" />
+					<AboutSection/>
+					</Route>
+					{assets &&
+					assets.map((post) => (
+						<Route path={`/${post.Slug}`} key={post.Slug}>
+							<Heading  key={post.Slug} content="Individual Products" />
+								<productPost></productPost>
+						</Route>
+					))}
+					<Route path="/admin">
+					<Heading content="Admin" />
+					<Dashboard/>
+					</Route>
+					<Route path="/admin/assets" exact>
+					<Heading content="World" />
+					</Route>
+						<Route path="/admin/assets/add">
+						</Route>
+				</Switch>
+		</Router>
+		</div>
 	);
 };
 
-export async function getStaticProps() {
-	// get assets from our api
-//	console.log("URL",API_URL+ "/assets")
-//	const res = await fetch(API_URL+ "/products"); 
-	//const assets = await res.json();
-	const assets=assetArr;
-	return {
-		props: { assets },
-	};
-} 
+
+
+export  async function getStaticProps() {
+		const res = await fetch(`http://localhost:1337/assets`);
+		const data = await res.json();
+	//const assets=assetArr
+		return {
+			props: { assets: data },
+		};
+	}
 
 Index.propTypes = {
 	assets: PropTypes.objectOf(PropTypes.string),

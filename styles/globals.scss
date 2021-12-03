@@ -1,5 +1,6 @@
 /** @format */
 @import "Home.module.scss";
+@import "Admin.module.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 @import url("https://use.typekit.net/jmo3enq.css");
@@ -52,7 +53,9 @@ body {
 	font-style: normal;
 	letter-spacing: normal;
 	line-height: 31.671875px;
-	background: radial-gradient(at 99% 1%, #1fb8ff 4%, #00035a 44%);
+	background: #00035a;
+	width: 100%;
+	height: 240vh;
 }
 html{
 	font-family: "adelle", serif !important;
@@ -70,6 +73,25 @@ html p{
 	height: 80vh!important;
 	margin-bottom: 5vh;
 }
+
+.section-index-card{
+	background-color: #00035a!important;
+	padding-top: 2rem;
+}
+
+
+.form-button{
+	font-family: "adelle";
+    background-color: $activegreen;
+    display: inline-block;
+    width: 70%;
+    color: #001d3b !important;
+    border-radius: 4px !important;
+    margin: 20px 13%;
+    border: 2.8px #001d3b;
+   box-shadow: inset 0 -3em 3em rgb(0 0 0 / 10%), 0 0 0 2px white, 0.3em 0.3em 1em rgb(0 0 0 / 30%);
+}
+
 .app-responsive-wrapper-outer {
 	display: flex;
 	justify-content: center;
@@ -123,11 +145,12 @@ html p{
 	position: relative;
 	padding-bottom: 10vh;
 	background: radial-gradient(at 99% 1%, #1fb8ff 2%, $ai-ii-blue 44%);
-	transform: skewY(6.2deg);
+//	transform: skewY(6.2deg);
 }
 
 .homeSkew {
-	transform: skewY(-6.2deg);
+	//transform: skewY(-6.2deg);
+	min-height: fit-content;
 }
 
 .home-card{
@@ -144,14 +167,26 @@ html p{
     border-radius: 8px;
     box-shadow: 0px 1px 1px $ai-ii-blue 0px 1px 2px $ai-ii-blue!important;
     overflow: hidden;
-    width: 75%!important;
+		min-width: 94% !important;
+    max-width: 100%!important;
     height: auto!important;
     margin-left: 0px;
     margin-bottom: 50px!important;
 }
 
-.detailCard{
-	background-image: url(/wind-turbine.svg);
+.product-box{
+	max-width:94%;
+	min-width:600px;
+	margin:0 auto!important;
+}
+
+.detailCard {
+	background-image: url(/card_background.svg)!important;
+	background-size: cover;
+	background-position: center center;
+	max-width:88%!important;
+	height: auto;
+
 }
 
 .card-wrapper {
@@ -179,6 +214,10 @@ nav {
 	font-family:"adelle",serif!important;
 }
 
+.col-md-6{
+border:1px solid black;
+}
+
 .nav_img {
 	display: inline-block;
 	max-height: 72px !important;
@@ -194,9 +233,10 @@ nav {
 	justify-content: space-between;
 	padding-top: 0.5 rem;
 	padding-bottom: 0.5 rem;
-	width: 99%;
+	width: 100%;
 	z-index: 12;
-	background:$i-dark!important;
+	background: radial-gradient(at 99% 1%, #1fb8ff 2%, #00035a 44%)!important;
+//	background:$i-dark!important;
 }
 
 .navbar-expand-lg {
@@ -223,6 +263,10 @@ nav {
 	display: flex !important;
 	flex-basis: auto !important;
 }
+.justify-content-center{
+	display:flex;  
+justify-content: center;  
+}
 
 .justify-content-end {
 	justify-content: flex-end !important;
@@ -236,7 +280,7 @@ nav a {
 	font-size: 30px;
 }
 
-nav a:hover {
+nav a:hover, a:hover {
 	color: $yellow !important;
 	transition: 850ms;
 }
@@ -328,19 +372,49 @@ a.navbar-brand {
 }
 
 .app-wrapper{
-display: flex;
-flex-direction: column;
-height: 100%;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	background: radial-gradient(at 99% 1%, #1fb8ff 4%, #00035a 44%);
+}
+
+
+header, .main-wrapper, .footer-wrapper{
+	flex-shrink: 0;
 }
 
 main{
 	flex-grow: 1;
+	display: block;
+	max-width: 84%;
+	min-width:600px;
+	margin:0 auto!important;
+ padding-top: 2rem;
+}
 
+nav.dashboard {
+	background: #f3f;
+	padding: 8px;
+}
+
+.carousel-wrapper{
+	position: relative;
+    user-select: auto;
+    margin: 0px auto 0px 0px;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    min-width: 260px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  	border: #d0f7fc 2px white;
+	  overflow: hidden;
 }
 
 .footer-box{
 	padding: 80px 60px;
-	background: black;
+	background: $ii-dark;
 	position: relative;
 	bottom: 0;
 	width: 100%;
@@ -348,6 +422,52 @@ main{
 	@media (max-width: 1000px) {
 		padding: 70px 30px;
 	}
+}
+
+.footer-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.footer-column{
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin-left: 60px;
+}
+
+.footer-row{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+	grid-gap: 20px;
+
+	@media (max-width: 1000px) {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+}
+
+
+
+.footer-link {
+	color: #d0f7fc;;
+	margin-bottom: 20px;
+	font-size: 18px;
+	text-decoration: none;
+
+	&:hover {
+		color: $yellow;
+		transition: 200ms ease-in;
+	}
+}
+
+.footer-heading{
+	font-size: 24px;
+	color: #fff;
+	margin-bottom: 40px;
+	font-weight: bold;
 }
 
 .card {
@@ -362,35 +482,105 @@ main{
 	width: 45%;
 }
 
+.form-container{
+  margin-bottom: 5rem!important;
+}
+
+form {
+	max-width: 500px;
+	margin: 0 auto;
+	background: var(--theme);
+	color: black !important;
+}
+
+form p {
+	color: var(--red);
+}
+
+form p::before {
+	display: inline;
+	content: "⚠ ";
+}
+
+form input {
+	display: block;
+	box-sizing: border-box;
+	width: 90%;
+	border-radius: 4px;
+	border: 3px solid $primary;
+	margin: 0 auto;
+	padding: 10px 15px;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+.message {
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+.success {
+	color: var(--blue);
+}
+
+.error {
+	color: var(--pink);
+}
+
 label {
-  font-weight: bold;
-  display: flex;
-  margin-bottom: 15px!important;
+	line-height: 2;
+	text-align: left;
+	display: block;
+	margin-bottom: 13px;
+	margin-top: 20px;
+	margin: 0 29px;
+	color: white;
+	font-size: 20px;
+	font-weight: 200;
 }
 
-input[type='text'],
-input[type='email'],
-textarea {
-  display: block;
-  width: 400px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: $primary;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-margin-bottom: 20px!important;
+.css-1s2u09g-control {
+	color: black !important;
 }
 
-.error{
-	color:$red;
-	text-decoration: underline;
+	button[type=submit], input[type=submit] {
+    background: radial-gradient(at 99% 1%, #e52d27 2%, #f2ca3e 74%);
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border: none;
+    margin: 40px 30%;
+    font-weight: 100;
+    letter-spacing: 10px;
 }
 
-.form-control {
-  margin-bottom: 20px!important;
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+	background: $activegreen!important;
+	transition: all 1s ease 0.5s;
+}
+
+.disabled,
+input[type="button"]:active,
+input[type="submit"]:active {
+	transition: 0.3s all;
+	transform: translateY(3px);
+	border: 1px solid transparent;
+	opacity: 0.8;
+}
+
+input:disabled {
+	opacity: 0.4;
+}
+
+input[type="button"]:hover {
+	transition: 0.3s all;
+}
+
+button[type="submit"],
+input[type="button"],
+input[type="submit"] {
+	-webkit-appearance: none;
 }
 
 .card:hover,
@@ -404,6 +594,17 @@ margin-bottom: 20px!important;
   color: $activegreen !important;
 }
 
+.btn_primary, .btn_secondary{
+font-family: "adelle";
+}
+
+.css-1ka9ryr-MuiButtonBase-root-MuiButton-root{
+	font-family: "Fira Condensed Sans"!important;
+	color: $ai-ii-blue!important;
+   margin-top: -14px!important;
+	 padding:4px 14px!important;
+	 background-color: #001d3b!important;
+}
 
 .card h2 {
 	margin: 0 0 1rem 0;
@@ -467,9 +668,14 @@ margin-bottom: 20px!important;
 }
 
 /** @format */
-
+.mediaCard{
+	height: 240px !important;
+    background-size: contain !important;
+    background-position: center center;
+    object-fit: scale-down!important;
+}
 .CardButton {
-	background-color: $green !important;
+	background-color: $primary ;
 	color: white !important;
 	font-size: 1.5rem !important;
 }
