@@ -25,6 +25,7 @@ $ii-dark: #000002;
 	width: 95%;
 	margin-left: 15px;
 	margin-top: 0.5em;
+	margin-bottom: 2.5rem;
 }
 
 /* .wrapper-image {
@@ -65,12 +66,23 @@ margin: 0 auto!important;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
-	height: 90vh;
+	height: 60vh;
 	width: 100%;
 	background-image: url(/background.svg);
 	background-repeat:no-repeat;
    background-position: center center;
 }
+
+.wrapper-image-about{
+	position: relative !important;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	width: 100%!important;
+	min-height:40vh!important;
+	background-image: none!important;
+}
+
 
 .wrapper-image-inner {
 	display: block;

@@ -15,6 +15,7 @@ import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AuthContext from "../comps/context/AuthContext";
 import Dashboard from "./dashboard";
+import { useEffect } from "react";
 
 const url = API_URL+ "/auth/local";
 
@@ -69,21 +70,36 @@ export default function LoginForm() {
 	};
 
 
+	useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+				handleSubmit(onSubmit)
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, []);
+
+
+
 	async function onSubmit(data) {
 		setSubmitting(true);
 		setLoginError(null);
 		setIsValid(false);
+
+
+
+
     const loginInfo = {
       identifier:data.username,
       password: data.password
   }
-		console.log("data 1", loginInfo );
    
 		try {
-			console.log("url", url);
-			console.log("data 2", data);
 			const response = await axios.post(url, loginInfo);
-			console.log("response", response.data);
       setIsValid(true);
 			setloginisValid(true);
       nookies.set(null, 'jwt', response.data.jwt ,{
@@ -99,7 +115,6 @@ export default function LoginForm() {
 
 			//			history.push("/dashboard");
 		} catch (error) {
-			console.log("error", error);
 			setLoginError(error.toString());
 		} finally {
 			setSubmitting(false);

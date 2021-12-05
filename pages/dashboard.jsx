@@ -12,10 +12,22 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { withStyles } from '@mui/styles';
 import AdminPage from "./admin";
 import  Heading from "../comps/common/Heading";
+import { useState, useContext } from "react";
+import AuthContext from "../comps/context/AuthContext";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Header from "../comps/Layout/Header";
 
 const Dashboard=()=> {
 	const assets=assetArr;
-	console.log("dashboard_array",assets)
+	const [auth, setAuth] = useContext(AuthContext);
+   const router = useRouter()
+	useEffect(() => {
+    if (!(auth.jwt)) {
+      router.push('/login')
+    }
+  }
+	)
 	return (
 		// 		 <main className="row product-container admin-bg">
     //     {assets &&
@@ -28,6 +40,7 @@ const Dashboard=()=> {
 		// 			))}			
 		// </main>
 		<>
+		<Header></Header>
 		<Heading content="Admin Page" />
 		Sections: <Link to="/admin/assets" href="/admin/assets"><a>Manage your assets</a></Link>
 	</> 

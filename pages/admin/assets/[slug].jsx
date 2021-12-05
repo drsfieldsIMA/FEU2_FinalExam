@@ -51,7 +51,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const { slug } = params;
-//	console.log("Albania",slug)
 //	const res = await fetch(`http://localhost:1337/assets?Slug=${slug}`);
 //	const data = await res.json();
 //	const  asset =  assetArr.filter(post => (post.Slug == slug));

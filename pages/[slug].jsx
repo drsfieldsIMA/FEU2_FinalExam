@@ -5,10 +5,13 @@ import assetArr from "./api/assetArr";
 import { Card,Box, Divider} from '@mui/material';
 import Text from "../comps/common/Text"
 //import { API_URL } from "../utils/url";
+import Header from "../comps/Layout/Header";
 
 export default function productPost({ asset }) {
 	const {Title,Content,Price,createdAt,Image} =asset;
 	return (
+		<>
+		<Header></Header>
 		<Box className="product-box height-75">
 		<Card className="singleCard" style={{height:"75vh",marginBottom:"2em",marginTop:"1em"}}>
 		<div className="row">
@@ -30,6 +33,7 @@ export default function productPost({ asset }) {
   </div>
   </Card>
   </Box>
+	</>
 	);
 }
 
@@ -51,7 +55,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 	const { slug } = params;
-//	console.log("Albania",slug)
 //	const res = await fetch(`http://localhost:1337/assets?Slug=${slug}`);
 //	const data = await res.json();
 //	const  asset =  assetArr.filter(post => (post.Slug == slug));

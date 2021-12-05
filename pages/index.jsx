@@ -1,5 +1,5 @@
 /** @format */
-
+/* eslint-disable no-mixed-spaces-and-tabs */
 // import Link from "next/link";
 import React  from "react";
 import {Router, Switch, Route } from "react-router-dom";
@@ -24,16 +24,26 @@ import productPost from "./[slug]";
 import CarouselApp from "../comps/Home/CarouselApp"
 import AdminPage from "./admin";
 import AdminAssetsPage from "./admin/assets";
+import AuthContext from "../comps/context/AuthContext";
+import { useState, useContext } from "react";
+import { useRouter } from 'next/router';
 
 const Index = ({assets,props}) => {
+const router = useRouter()
 const history = createMemoryHistory();
+
+const [auth, setAuth] = useContext(AuthContext);
 	return (
 		<div>
 		<Router  history={history}>
 				<Switch>
 					<Route path="/"  exact >
+					<div>
 					<HomePage/>
+					</div>
+					<div >
 					<HomeDeck/>
+					</div>
 					<section className="carousel-wrapper">
 					<CarouselApp props={{assets:assets}}></CarouselApp>
 					</section>
@@ -61,7 +71,7 @@ const history = createMemoryHistory();
 					<Dashboard/>
 					</Route>
 					<Route path="/admin/assets" exact>
-					<Heading content="World" />
+					<Heading content="" />
 					</Route>
 						<Route path="/admin/assets/add">
 						</Route>

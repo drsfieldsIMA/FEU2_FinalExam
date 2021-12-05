@@ -26,9 +26,16 @@ function CarouselApp({props}){
     { width: 1200, itemsToShow: 4 }
   ]; */
 //    const items=assetArr;
-    
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow:2, pagination: false },
+  { width: 850, itemsToShow: 3, itemsToScroll: 2},
+  { width: 1150, itemsToShow: 4, itemsToScroll: 3},
+  { width: 1450, itemsToShow: 5,itemsToScroll:4},
+  { width: 1750, itemsToShow: 6 ,itemsToScroll:3 },
+]
     return (
-      <Carousel style={{marginTop:50}}  >
+      <Carousel  breakPoints={breakPoints} style={{marginTop:50}}  >
          {assets &&
 					assets.map((post) => (
         <Link href={`/${post.Slug}`} key={post.Slug} >

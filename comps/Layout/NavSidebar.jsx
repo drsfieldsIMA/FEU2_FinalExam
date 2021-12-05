@@ -15,6 +15,7 @@ import { Users as UsersIcon } from '../../public/icons/users';
 import { XCircle as XCircleIcon } from '../../public/icons/x-circle';
 import {logoPic} from '../../public/Aida_logo.svg';
 import { NavItem } from './NavItem';
+import  {theme}  from '../../theme/theme';
 
 const items = [
   {
@@ -23,9 +24,9 @@ const items = [
     title: 'Home'
   },
   {
-    href: '/maintenance',
+    href: '/about',
     icon: (<UsersIcon fontSize="small" />),
-    title: 'Maintenance'
+    title: 'About'
   },
   {
     href: '/products',
@@ -38,11 +39,6 @@ const items = [
     title: 'Admin'
   },
   {
-    href: '/settings',
-    icon: (<CogIcon fontSize="small" />),
-    title: 'Settings'
-  },
-  {
     href: '/login',
     icon: (<LockIcon fontSize="small" />),
     title: 'Login'
@@ -51,20 +47,17 @@ const items = [
     href: '/register',
     icon: (<UserAddIcon fontSize="small" />),
     title: 'Register'
-  },
-  {
-    href: '/404',
-    icon: (<XCircleIcon fontSize="small" />),
-    title: 'Error'
   }
 ];
 
 export const NavSidebar = (props) => {
   const { open, onClose } = props;
   const router = useRouter();
-  const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'), {
-    defaultMatches: true,
-    noSsr: false
+
+   
+  const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"), {
+    defaultMatches: false,
+    noSsr: false,
   });
 
   useEffect(
@@ -87,7 +80,8 @@ export const NavSidebar = (props) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100%'
+          height: '100%',
+          backgroundColor: '#00035a '
         }}
       >
         <div>
@@ -193,7 +187,7 @@ export const NavSidebar = (props) => {
           >
           </Box>
           <NextLink
-            href="https://material-kit-pro-react.devias.io/"
+            href=""
             passHref
           >
             <Button

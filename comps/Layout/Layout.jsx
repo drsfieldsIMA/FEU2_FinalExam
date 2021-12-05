@@ -1,11 +1,13 @@
 import Footer from "./Footer"
 import Nav from "./Nav"
+import NavbarLayout  from "./NavLayout";
+import PropTypes from "prop-types";
 
 const Layout = ({ children }) => {
   return (
     <>
     <div className="app-wrapper">
-      <Nav/>
+      <NavbarLayout/>
       <main className="main-wrapper">
       { children }
       </main>
@@ -17,4 +19,8 @@ const Layout = ({ children }) => {
   );
 }
  
+Layout.propTypes = {
+  NavbarLayout: PropTypes.node,
+};
+
 export default Layout;

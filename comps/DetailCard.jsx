@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 
 function DetailCard({...props}) {
 	// console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(props.date));
-	console.log()
 	const splitString = props.date.split("T");
 	const ImageSrc=props.Image;
 //	console.log("Detail image",ImageSrc);
@@ -35,7 +34,7 @@ function DetailCard({...props}) {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Button className="CardButton" size="large">Buy
+				<Button className="CardButton mt-auto" size="large">Buy
 				</Button>
 			</CardActions>
 		</Card>

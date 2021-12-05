@@ -8,9 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import PropTypes from 'prop-types';
 import  theme  from '../../theme/theme';
+import { useRouter } from 'next/router';
 
 export const NavMob = (props) =>  {
-
+const router=useRouter()
   const { onSidebarOpen, ...other } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -38,6 +39,7 @@ export const NavMob = (props) =>  {
           <Button color="inherit" 
          sx={{backgroundColor:'neutral.800'}}
          hover={{backgroundColor:'neutral.600'}}
+         onClick={() => router.push('/login')}
           >Login</Button>
         </Toolbar>
       </AppBar>
